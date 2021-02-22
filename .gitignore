@@ -1,0 +1,38 @@
+*/target/*
+target/
+.metadata
+.idea
+*.log
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.springBeans
+out/
+
+# Eclipse Core
+.project
+
+# Idea
+*.iml
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+.repository/
+
