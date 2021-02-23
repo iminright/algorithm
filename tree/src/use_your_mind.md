@@ -66,5 +66,20 @@ void bfs(TreeNode root) {
 }
 ```
 
+## 递归
+1.写出公式
+
+2.写出终止条件
+
+举个例子:
+_104_MaxDepth,求树的最大高度
+
+1.写出公式
+
+maxDepth(root) = Max(maxDepth(root.left), maxDepth(root.right)) + 1
+
+2.写出终止条件
+
+叶子节点的高度是0,即 if(node == null) return 0;
 
 
