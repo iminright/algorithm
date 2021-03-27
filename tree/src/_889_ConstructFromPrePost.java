@@ -9,34 +9,35 @@
  */
 public class _889_ConstructFromPrePost {
 
-    int preIndex = 0;
 
     public TreeNode constructFromPrePost(int[] pre, int[] post) {
-        return buildTree(0, pre.length - 1, pre, post);
+
+        return buildTree(0, pre.length - 1, pre, 0, post.length - 1, post);
     }
 
-    private TreeNode buildTree(int startInPost, int endInPost, int[] pre, int[] post){
-        if(preIndex >= pre.length || startInPost > endInPost){
+    private TreeNode buildTree(int preStart, int preEnd, int[] pre, int postStart, int postEnd, int[] post){
+        if(preEnd < preStart || postEnd < postStart){
             return null;
         }
-        if(startInPost == endInPost){
-            return new TreeNode(post[startInPost]);
-        }
-        TreeNode root = new TreeNode(pre[preIndex]);
-        preIndex++;
-        if(preIndex >= pre.length){
+        TreeNode root = new TreeNode(pre[preStart]);
+        if(preStart == preEnd){
             return root;
         }
-        for(int i = startInPost; i <= endInPost; i++){
-            if(post[i] == pre[preIndex]){
-                root.left = buildTree(startInPost, i - 1 < startInPost ? startInPost : (i - 1), pre, post);
-                if(root.left != null){
-                    preIndex++;
-                }
-                root.right = buildTree(i + 1 > endInPost ? endInPost : (i + 1), endInPost, pre, post);
+        // index 区分左右子树的分界点
+        if(preStart + 1 >= pre.length){
+            return root;
+        }
+        int index = -1;
+        for (int i = postStart; i <= postEnd; i++) {
+            if(post[i] == pre[preStart + 1]){
+                index = i;
                 break;
             }
         }
+
+        root.left = buildTree(preStart + 1, preStart + 1 + index - postStart, pre, postStart, index, post);
+        // 主要注意right tree的起始位置,rightTreePreStart = leftTreePreEnd + 1
+        root.right = buildTree(preStart + 1 + index - postStart + 1, preEnd, pre,index + 1, postEnd - 1, post);
         return root;
     }
 
