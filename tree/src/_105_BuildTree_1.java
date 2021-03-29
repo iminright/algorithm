@@ -7,7 +7,7 @@
  * @author wanhaofan
  * @version _105_buildTree_1.java, v 0.1 2021Äê03ÔÂ27ÈÕ 6:27 PM wanhaofan
  */
-public class _105_buildTree_1 {
+public class _105_BuildTree_1 {
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
         return buildTree(preorder, 0 , preorder.length - 1, inorder, 0, inorder.length - 1);
